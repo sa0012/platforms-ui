@@ -1,12 +1,18 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const assetsPath = function (_path) {
+  const assetsSubDirectory = 'static'
 
+  return path.posix.join(assetsSubDirectory, _path)
+}
+console.log('进来了吗')
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.vue', '.scss']
+    extensions: ['.js', '.ts', '.tsx', '.vue', '.less']
   },
-  modules: {
+  module: {
     rules: [
       {
         test: /\.vue$/,
@@ -26,41 +32,43 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+          // enable sub-packages to find babel config
           options: {
             rootMode: 'upward'
           }
         }
       },
       {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'url-loader',
-        query: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.scss$/,
+        test: /\.(sass|scss)$/,
         sideEffects: true,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              paths: [path.resolve(__dirname, 'node_modules')]
-            }
-          }
+          'sass-loader'
+          // {
+          //   loader: 'sass-loader',
+          //   options: {
+          //     paths: [path.resolve(__dirname, 'node_modules')]
+          //   }
+          // }
         ]
-      }
+      },
+      // {
+      //   test: /\.md$/,
+      //   use: ['vue-loader', '@vant/markdown-loader']
+      // }
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: assetsPath('../[name]/style/index.css'),
+      chunkFilename: "[id].css"
+    }),
+    new MiniCssExtractPlugin({
+      filename: assetsPath('../[name]/style.css'),
+      chunkFilename: "[id].css"
+    })
   ]
-}
+};
