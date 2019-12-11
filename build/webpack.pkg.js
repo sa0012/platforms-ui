@@ -23,7 +23,7 @@ module.exports = merge(config, {
     publicPath: '/dist/',
     library: 'platforms',
     libraryTarget: 'commonjs2',
-    filename: isMinify ? '[name].min.js' : '[name]/[name].js'
+    filename: isMinify ? '[name].min.js' : '[name]/index.js'
   },
   // 配置vue的引用模式
   externals: {

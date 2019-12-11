@@ -73,12 +73,12 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name]/[name].min.css',
+      filename: '[name]/[name].css',
       chunkFilename: "[id].css"
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: assetsPath('../[name]/style.css'),
-    //   chunkFilename: "[id].css"
-    // })
+    new MiniCssExtractPlugin({
+      filename: '[name]/style/index.css',
+      chunkFilename: "[id].css"
+    })
   ]
 };
