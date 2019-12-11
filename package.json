@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:pkg": "cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js",
-    "build:lib": "cross-env node build/build-components.js && npm run build:pkg",
+    "build:lib": "cross-env npm run build:pkg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "juckchen",

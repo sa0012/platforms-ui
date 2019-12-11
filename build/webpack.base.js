@@ -10,7 +10,10 @@ console.log('进来了吗')
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.vue', '.less']
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue2': 'vue/dist/vue.esm.js'
+    }
   },
   module: {
     rules: [
@@ -39,6 +42,13 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
+      },
+      {
         test: /\.(sass|scss)$/,
         sideEffects: true,
         use: [
@@ -63,12 +73,12 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: assetsPath('../[name]/style/index.css'),
+      filename: '[name]/[name].min.css',
       chunkFilename: "[id].css"
     }),
-    new MiniCssExtractPlugin({
-      filename: assetsPath('../[name]/style.css'),
-      chunkFilename: "[id].css"
-    })
+    // new MiniCssExtractPlugin({
+    //   filename: assetsPath('../[name]/style.css'),
+    //   chunkFilename: "[id].css"
+    // })
   ]
 };
