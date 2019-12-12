@@ -1,29 +1,16 @@
 const path = require('path')
-const fs = require('fs')
 const merge = require('webpack-merge')
 const config = require('./webpack.base')
-// 是否需要压缩成/\.min.js/文件
-const isMinify = process.argv.indexOf('-p') !== -1
-var modules = {}
-var cPath = path.join(__dirname, '../src')
-var files = fs.readdirSync(cPath)
-if (files) {
-  files.forEach(function (name) {
-    var p = path.join(cPath, name)
-    if (fs.statSync(p).isDirectory()) {
-      modules[name] = p
-    }
-  })
-}
+const { modulesFunc, allBuild, isMinify } = require('./utils')
+
 module.exports = merge(config, {
   mode: 'production',
-  entry: modules,
+  entry: isMinify ? allBuild('platforms', '../src/index.js') : modulesFunc('../src'),
   output: {
-    path: path.join(process.cwd(), './lib'),
-    publicPath: '/dist/',
+    path: path.join(__dirname, '../lib'),
     library: 'platforms',
-    libraryTarget: 'commonjs2',
-    filename: isMinify ? '[name].min.js' : '[name]/index.js'
+    libraryTarget: isMinify ? 'umd' : 'commonjs2',
+    filename: isMinify ? '[name].min.js' : '[name]/[name].js'
   },
   // 配置vue的引用模式
   externals: {

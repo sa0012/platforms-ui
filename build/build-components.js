@@ -10,7 +10,7 @@
  * ensureFile 创建文件
  * createFile() 异步
  * createFileSync(),ensureFileSync() 同步
- 
+
  * ensureDir 创建目录
  * ensureDirSync() 同步
  */
@@ -53,6 +53,7 @@ function compile (dir) {
 
     if (isScript(file)) {
       const { code } = babel.transformFileSync(filePath, babelConfig)
+      console.log(code, 'code')
       fs.removeSync(filePath)
       fs.outputFileSync(filePath.replace(scriptRegExp, '.js'), code)
     }

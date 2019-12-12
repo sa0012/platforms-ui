@@ -1,12 +1,26 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const assetsPath = function (_path) {
-  const assetsSubDirectory = 'static'
+const { isMinify } = require('./utils')
 
-  return path.posix.join(assetsSubDirectory, _path)
-}
 console.log('进来了吗')
+const MiniCssExtractArr = () => {
+  return isMinify ? [
+    new MiniCssExtractPlugin({
+      filename: '[name].min.css',
+      chunkFilename: "[id].css"
+    })
+  ] : [
+    new MiniCssExtractPlugin({
+      filename: '[name]/[name].css',
+      chunkFilename: "[id].css"
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name]/style/index.css',
+      chunkFilename: "[id].css"
+    })
+  ]
+}
 module.exports = {
   mode: 'development',
   resolve: {
@@ -17,15 +31,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        exclude: /node_modules/,
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
       {
         test: /\.vue$/,
         use: [
@@ -75,13 +80,6 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name]/[name].css',
-      chunkFilename: "[id].css"
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name]/style/index.css',
-      chunkFilename: "[id].css"
-    })
+    ...(MiniCssExtractArr())
   ]
 };
