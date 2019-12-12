@@ -1,11 +1,18 @@
 <template>
-<div class="alert">
-  {{ message }}
-</div>
+  <transition name="pl-alert-fade">
+    {{ message }}
+  </transition>
 </template>
 
 <script>
+// const STATUS_CLASS_MAP = {
+//   'success': '',
+//   'warning': '',
+//   'error': ''
+// }
 export default {
+  name: 'PlAlert',
+
   data () {
     return {
       message: 'this is a alert component'

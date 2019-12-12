@@ -13,12 +13,6 @@ module.exports = function (api) {
           modules: useESModules ? false : 'commonjs'
         }
       ],
-      // [
-      //   '@vue/babel-preset-jsx',
-      //   {
-      //     functional: false
-      //   }
-      // ],
       '@babel/preset-typescript'
     ],
     plugins: [
@@ -26,13 +20,11 @@ module.exports = function (api) {
         '@babel/plugin-transform-runtime',
         {
           corejs: false,
-          helpers: true,
+          helpers: false,
           regenerator: NODE_ENV === 'test',
           useESModules
         }
-      ],
-      // '@babel/plugin-transform-object-assign',
-      // '@babel/plugin-proposal-optional-chaining'
+      ]
     ]
   }
 }

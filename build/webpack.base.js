@@ -2,22 +2,23 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { isMinify } = require('./utils')
+const isProd = process.env.NODE_ENV
 
 console.log('进来了吗')
 const MiniCssExtractArr = () => {
   return isMinify ? [
     new MiniCssExtractPlugin({
       filename: '[name].min.css',
-      chunkFilename: "[id].css"
+      chunkFilename: '[id].css'
     })
   ] : [
     new MiniCssExtractPlugin({
       filename: '[name]/[name].css',
-      chunkFilename: "[id].css"
+      chunkFilename: '[id].css'
     }),
     new MiniCssExtractPlugin({
       filename: '[name]/style/index.css',
-      chunkFilename: "[id].css"
+      chunkFilename: '[id].css'
     })
   ]
 }
@@ -31,6 +32,16 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(vue|jsx?)$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: 'eslint-loader'
+      //     }
+      //   ]
+      // },
       {
         test: /\.vue$/,
         use: [
@@ -58,7 +69,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader'
         ]
       },
@@ -66,20 +77,40 @@ module.exports = {
         test: /\.(sass|scss)$/,
         sideEffects: true,
         use: [
-          MiniCssExtractPlugin.loader,
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           'postcss-loader',
           'sass-loader'
         ]
       },
-      // {
-      //   test: /\.md$/,
-      //   use: ['vue-loader', '@vant/markdown-loader']
-      // }
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false
+              }
+            }
+          },
+          {
+            loader: path.resolve(__dirname, './md-loader/index.js')
+          }
+        ]
+      },
+      {
+        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: path.posix.join('static', '[name].[hash:7].[ext]')
+        }
+      }
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
     ...(MiniCssExtractArr())
   ]
-};
+}
