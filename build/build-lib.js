@@ -4,6 +4,7 @@ const signale = require('signale')
 const { Signale } = signale
 
 const tasks = [
+  'node build/build-entry',
   'node build/build-components.js',
   'cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js',
   'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js'

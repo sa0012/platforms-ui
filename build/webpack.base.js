@@ -18,6 +18,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        exclude: /node_modules/,
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
         test: /\.vue$/,
         use: [
           {
@@ -56,12 +65,6 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'sass-loader'
-          // {
-          //   loader: 'sass-loader',
-          //   options: {
-          //     paths: [path.resolve(__dirname, 'node_modules')]
-          //   }
-          // }
         ]
       },
       // {

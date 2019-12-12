@@ -10,5 +10,5 @@ module.exports = function () {
   // 同步读取组件
   const dirs = fs.readdirSync(src)
   // 排除非组件文件
-  return dirs.filter(dir => !EXCLUDES(dir))
+  return dirs.filter(dir => !EXCLUDES[dir])
 }

@@ -2,21 +2,21 @@
  * fs的扩展模块， 继承了fs， 并提供更多好用的api
  * copy 复制文件 copy(src, dest, [option],callback)
  * copySync() 同步
- * 
+
  * emptyDir 清空目录
  * emptydir() 异步
  * emptyDirSync(), emptydirSync() 同步
- * 
+
  * ensureFile 创建文件
  * createFile() 异步
  * createFileSync(),ensureFileSync() 同步
- * 
+ 
  * ensureDir 创建目录
  * ensureDirSync() 同步
  */
 const fs = require('fs-extra')
 const path = require('path')
-const  babel = require('@babel/core')
+const babel = require('@babel/core')
 
 // 打包为es加载模式的目录路径
 const esDir = path.join(__dirname, '../es')
