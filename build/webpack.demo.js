@@ -16,7 +16,7 @@ const webpackConfig = merge(baseConfig, {
   mode: process.env.NODE_ENV,
   devtool: '#eval-source-map',
   entry: {
-    docs: './examples/entry.js'
+    docs: './examples/main.js'
   },
   output: {
     path: path.resolve(process.cwd(), './examples/platforms-ui/'),

@@ -1,285 +1,107 @@
-<style lang="scss">
-  .side-nav {
-    width: 100%;
-    box-sizing: border-box;
-    padding-right: 30px;
-    transition: opacity .3s;
-    &.is-fade {
-      transition: opacity 3s;
-    }
+<template>
+  <div class="side-nav">
+    <b-scrollbar style="height:100%;" normal>
+      <div v-for="title in (Object.keys(data))" class="group-container" :key="title">
+        <p class="side-nav-title">{{ title }}</p>
+        <div class="side-nav-items" v-for="(nav,index) in data[title]" :key="index">
+          <router-link v-if="nav.name" :class="$route.name===nav.name ? 'active' : ''" :to="{name: nav.name}">
+            {{ nav.desc }}
+          </router-link>
+          <p v-else class="side-nav-group">{{nav.desc}}</p>
+          <div v-for="item in nav.items" :key="item.name">
+            <router-link :to="{name: item.name}" :class="$route.name===item.name ? 'active' : ''"
+                         class="slid-nav-component">
+              <b-icon :name="item.icon" v-if="item.icon" style="margin-right: 5px;" size="16"></b-icon>
+              {{item.desc}}
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </b-scrollbar>
+  </div>
+</template>
 
-    li {
-      list-style: none;
-    }
+<script>
+import navConf from '../nav.config.json'
 
-    ul {
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-    
-    > ul > .nav-item > a {
-      margin-top: 15px;
-    }
-
-    > ul > .nav-item:nth-child(-n + 4) > a {
-      margin-top: 0;
-    }
-
-    .nav-item {
-      a {
-        font-size: 16px;
-        color: #333;
-        line-height: 40px;
-        height: 40px;
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
-        display: block;
-        position: relative;
-        transition: .15s ease-out;
-        font-weight: bold;
-
-        &.active {
-          color: #409EFF;
-        }
-      }
-
-      .nav-item {
-        a {
-          display: block;
-          height: 40px;
-          color: #444;
-          line-height: 40px;
-          font-size: 14px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          font-weight: normal;
-
-          &:hover,
-          &.active {
-            color: #409EFF;
-          }
-        }
-      }
-  
-      &.sponsors {
-        & > .sub-nav {
-          margin-top: -10px;
-        }
-        
-        & > a {
-          color: #777;
-          font-weight: 300;
-          font-size: 14px;
-        }
-        
-        .nav-item {
-          display: inline-block;
-        
-          a {
-            height: auto;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 8px 12px 12px 0;
-
-            img {
-              width: 42px;
-            }
-          }
-
-          &:first-child a img {
-            width: 36px;
-          }
-        }
-      }
-    }
-
-    .nav-group__title {
-      font-size: 12px;
-      color: #999;
-      line-height: 26px;
-      margin-top: 15px;
-    }
-
-    #code-sponsor-widget {
-      margin: 0 0 0 -20px;
+export default {
+  data () {
+    return {
+      data: navConf
     }
   }
-  .nav-dropdown-list {
-    width: 120px;
-    margin-top: -8px;
-    li {
+}
+</script>
+
+<style lang="scss">
+  .side-nav {
+    width: 260px;
+    height: 100%;
+    overflow: hidden;
+    padding-top: 20px;
+    box-sizing: border-box;
+    color: #3F536E;
+    background-color: #fff;
+    border-right: 1px solid #dcdee2;
+    z-index: 99;
+    .bin-scrollbar__wrap {
+      overflow-x: hidden;
+    }
+    .group-container {
+      margin-bottom: 12px;
+    }
+    .side-nav-title {
+      margin: 6px 0;
+      padding: 0 12px;
+      color: #8DABC4;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .side-nav-items {
       font-size: 14px;
+      font-weight: normal;
+      line-height: 1.8;
+      a {
+        display: block;
+        position: relative;
+        padding: 8px 24px;
+        color: #3F536E;
+        font-weight: normal;
+        line-height: 1.5;
+        cursor: pointer;
+        &:hover {
+          color: #2d8cf0;
+        }
+      }
+      .side-nav-group {
+        padding: 6px 0 6px 24px;
+        font-size: 15px;
+        color: #999;
+        margin: 0;
+      }
+      .slid-nav-component {
+        display: block;
+        position: relative;
+        padding: 10px 24px 10px 35px;
+        color: #616367;
+        font-size: 14px;
+      }
+      .active {
+        color: #2d8cf0;
+        background: #f0faff;
+        &::after {
+          content: "";
+          display: block;
+          width: 2px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          background: #2d8cf0;
+        }
+      }
     }
   }
 </style>
-<template>
-  <div
-    class="side-nav"
-    @mouseenter="isFade = false"
-    :class="{ 'is-fade': isFade }"
-    :style="navStyle">
-    <ul>
-      <li class="nav-item sponsors">
-        <a>{{ lang === 'zh-CN' ? '赞助商' : 'Sponsors' }}</a>
-        <ul class="pure-menu-list sub-nav">
-          <li class="nav-item" v-show="lang !== 'zh-CN'">
-            <a href="https://tipe.io/?ref=element" target="_blank">
-              <img src="~examples/assets/images/tipe.svg" alt="tipe.io">
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="sponsor" href="https://www.duohui.cn/?utm_source=element&utm_medium=web&utm_campaign=element-index" target="_blank">
-              <img src="~examples/assets/images/duohui.svg" alt="duohui">
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li
-        class="nav-item"
-        v-for="(item, key) in data"
-        :key="key">
-        <a v-if="!item.path && !item.href" @click="expandMenu">{{item.name}}</a>
-        <a v-if="item.href" :href="item.href" target="_blank">{{item.name}}</a>
-        <router-link
-          v-if="item.path"
-          active-class="active"
-          :to="base + item.path"
-          exact
-          v-text="item.title || item.name">
-        </router-link>
-        <ul class="pure-menu-list sub-nav" v-if="item.children">
-          <li
-            class="nav-item"
-            v-for="(navItem, key) in item.children"
-            :key="key">
-            <router-link
-              class=""
-              active-class="active"
-              :to="base + navItem.path"
-              exact
-              v-text="navItem.title || navItem.name">
-            </router-link>
-          </li>
-        </ul>
-        <template v-if="item.groups">
-          <div
-            class="nav-group"
-            v-for="(group, key) in item.groups"
-            :key="key"
-            >
-            <div class="nav-group__title" @click="expandMenu">{{group.groupName}}</div>
-            <ul class="pure-menu-list">
-              <li
-                class="nav-item"
-                v-for="(navItem, key) in group.list"
-                v-show="!navItem.disabled"
-                :key="key">
-                <router-link
-                  active-class="active"
-                  :to="base + navItem.path"
-                  exact
-                  v-text="navItem.title"></router-link>
-              </li>
-            </ul>
-          </div>
-        </template>
-      </li>
-    </ul>
-    <!--<div id="code-sponsor-widget"></div>-->
-  </div>
-</template>
-<script>
-  import bus from '../bus';
-
-  export default {
-    props: {
-      data: Array,
-      base: {
-        type: String,
-        default: ''
-      }
-    },
-    data() {
-      return {
-        highlights: [],
-        navState: [],
-        isSmallScreen: false,
-        isFade: false
-      };
-    },
-    watch: {
-      '$route.path'() {
-        this.handlePathChange();
-      },
-      isFade(val) {
-        bus.$emit('navFade', val);
-      }
-    },
-    computed: {
-      navStyle() {
-        const style = {};
-        if (this.isSmallScreen) {
-          style.paddingBottom = '60px';
-        }
-        style.opacity = this.isFade ? '0.5' : '1';
-        return style;
-      },
-      lang() {
-        return this.$route.meta.lang;
-      }
-    },
-    methods: {
-      handleResize() {
-        this.isSmallScreen = document.documentElement.clientWidth < 768;
-        this.handlePathChange();
-      },
-      handlePathChange() {
-        if (!this.isSmallScreen) {
-          this.expandAllMenu();
-          return;
-        }
-        this.$nextTick(() => {
-          this.hideAllMenu();
-          let activeAnchor = this.$el.querySelector('a.active');
-          let ul = activeAnchor.parentNode;
-          while (ul.tagName !== 'UL') {
-            ul = ul.parentNode;
-          }
-          ul.style.height = 'auto';
-        });
-      },
-      hideAllMenu() {
-        [].forEach.call(this.$el.querySelectorAll('.pure-menu-list'), ul => {
-          ul.style.height = '0';
-        });
-      },
-      expandAllMenu() {
-        [].forEach.call(this.$el.querySelectorAll('.pure-menu-list'), ul => {
-          ul.style.height = 'auto';
-        });
-      },
-      expandMenu(event) {
-        if (!this.isSmallScreen) return;
-        let target = event.currentTarget;
-        if (!target.nextElementSibling || target.nextElementSibling.tagName !== 'UL') return;
-        this.hideAllMenu();
-        event.currentTarget.nextElementSibling.style.height = 'auto';
-      }
-    },
-    created() {
-      bus.$on('fadeNav', () => {
-        this.isFade = true;
-      });
-    },
-    mounted() {
-      this.handleResize();
-      window.addEventListener('resize', this.handleResize);
-    },
-    beforeDestroy() {
-      window.removeEventListener('resize', this.handleResize);
-    }
-  };
-</script>
