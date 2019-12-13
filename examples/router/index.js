@@ -16,7 +16,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  BinUI.LoadingBar.start()
+  // BinUI.LoadingBar.start()
   next()
 })
 router.afterEach(() => {
@@ -24,7 +24,7 @@ router.afterEach(() => {
     const blocks = document.querySelectorAll('pre code:not(.hljs)')
     Array.prototype.forEach.call(blocks, hljs.highlightBlock)
   })
-  BinUI.LoadingBar.done()
+  // BinUI.LoadingBar.done()
 })
 
 export default router

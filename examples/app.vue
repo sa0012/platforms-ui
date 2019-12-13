@@ -1,14 +1,14 @@
 <template>
   <div id="app" flex="dir:top box:first">
-    <main-header></main-header>
+    <!-- <main-header></main-header> -->
     <div class="main-cnt" flex>
       <side-nav class="nav" flex-box="0"></side-nav>
       <div class="page-container" flex-box="1">
-        <b-scrollbar style="height:100%;" ref="componentScrollBar">
+        <!-- <b-scrollbar style="height:100%;" ref="componentScrollBar"> -->
           <router-view></router-view>
-          <main-footer></main-footer>
-          <b-back-top></b-back-top>
-        </b-scrollbar>
+          <!-- <main-footer></main-footer>
+          <b-back-top></b-back-top> -->
+        <!-- </b-scrollbar> -->
       </div>
     </div>
   </div>
@@ -53,10 +53,12 @@
     width: 100%;
     background-color: #fff;
     box-shadow: 0 4px 30px 0 rgba(223, 225, 230, .5);
+    display: flex;
     .page-container {
       box-sizing: border-box;
       overflow: hidden;
       height: 100%;
+      flex: 1;
       .bin-scrollbar__wrap {
         overflow-x: hidden;
       }

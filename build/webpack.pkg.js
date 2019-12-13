@@ -5,7 +5,7 @@ const { modulesFunc, allBuild, isMinify } = require('./utils')
 
 module.exports = merge(config, {
   mode: 'production',
-  entry: isMinify ? allBuild('platforms', '../src/index.js') : modulesFunc('../src'),
+  entry: isMinify ? allBuild('platforms', '../es/index.js') : modulesFunc('../src'),
   output: {
     path: path.join(__dirname, '../lib'),
     library: 'platforms',
