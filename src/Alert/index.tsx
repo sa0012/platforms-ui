@@ -14,7 +14,7 @@ export const AlertProps = {
 }
 
 const Alert = {
-  name: 'Alert',
+  name: 'PlAlert',
   props: AlertProps,
   data () {
     return {

@@ -3,7 +3,7 @@
  */
 import { PlatformsComponent } from './component'
 
-export declare class Alert extends PlatformsComponent {
+export declare class PlAlert extends PlatformsComponent {
   /**
    * @name 弹窗显示的类型
    * @default info,

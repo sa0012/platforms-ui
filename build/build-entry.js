@@ -41,7 +41,7 @@ const components = [
   ${installList.join(',\n  ')}
 ]
 
-const install = (Vue: VueConstructor) => {
+const install = Vue => {
   components.forEach(Component => {
     Vue.use(Component)
   })

@@ -1,9 +1,4 @@
-import Vue from 'vue'
+export * from './platforms-ui'
 
-import { Alert } from './alert'
-
-export function install (vue: typeof Vue): void
-
-export {
-  Alert
-}
+import * as PlatformsUI from './platforms-ui'
+export default PlatformsUI
