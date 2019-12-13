@@ -11,6 +11,8 @@ const tasks = [
   // 'cross-env NODE_ENV=production npm run lint',
   // 生成 index.js 入口文件
   'node build/build-entry',
+  // 生成style引入入口文件
+  'node build/build-style-entry',
   'node build/build-components.js',
   // 全局引入模式
   // 'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js',
