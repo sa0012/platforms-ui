@@ -8,14 +8,16 @@ const { Signale } = signale
 
 const tasks = [
   // eslint 代码检查
-  'cross-env NODE_ENV=production npm run lint',
+  // 'cross-env NODE_ENV=production npm run lint',
   // 生成 index.js 入口文件
   'node build/build-entry',
-  // 'node build/build-components.js',
+  // 生成style引入入口文件
+  'node build/build-style-entry',
+  'node build/build-components.js',
   // 全局引入模式
-  'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js',
+  // 'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js',
   // 每个组件单独打包
-  'cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js'
+  // 'cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js'
 ]
 fs.emptyDirSync(libDir)
 

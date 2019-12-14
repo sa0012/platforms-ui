@@ -24,7 +24,9 @@ module.exports = function (api) {
           regenerator: NODE_ENV === 'test',
           useESModules
         }
-      ]
+      ],
+      '@babel/plugin-transform-object-assign',
+      '@babel/plugin-proposal-optional-chaining'
     ]
   }
 }

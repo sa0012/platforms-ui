@@ -36,6 +36,7 @@ const isDir = dir => fs.lstatSync(dir).isDirectory()
 const isCode = path => !/(demo|test|\.md)$/.test(path)
 const isScript = path => scriptRegExp.test(path)
 
+// 对需要打包的组件文件进行 babel 编译
 function compile (dir) {
   const files = fs.readdirSync(dir)
 
@@ -53,8 +54,8 @@ function compile (dir) {
 
     if (isScript(file)) {
       const { code } = babel.transformFileSync(filePath, babelConfig)
-      console.log(code, 'code')
       fs.removeSync(filePath)
+      // 输入的文件为 '*.js' 文件
       fs.outputFileSync(filePath.replace(scriptRegExp, '.js'), code)
     }
   })

@@ -2,13 +2,14 @@ const fs = require('fs')
 const path = require('path')
 
 // 排除的文件
-const EXCLUDES = ['index.ts', 'index.scss', 'style', 'mixins', 'utils', '.DS_Store']
+const EXCLUDES = ['index.ts', 'index.scss', 'style', 'style.js', 'mixins', 'utils', '.DS_Store']
 
 module.exports = function () {
-  // 拼接计算组件路径
+  // 组件存放目录
   const src = path.resolve(__dirname, '../src')
-  // 同步读取组件
+  // 同步读取该目录下所有的文件
   const dirs = fs.readdirSync(src)
   // 排除非组件文件
-  return dirs.filter(dir => !EXCLUDES[dir])
+  const includeDirs = dirs.filter(dir => !EXCLUDES.includes(dir))
+  return includeDirs
 }

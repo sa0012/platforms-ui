@@ -15,16 +15,16 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   BinUI.LoadingBar.start()
-//   next()
-// })
-// router.afterEach(() => {
-//   Vue.nextTick(() => {
-//     const blocks = document.querySelectorAll('pre code:not(.hljs)')
-//     Array.prototype.forEach.call(blocks, hljs.highlightBlock)
-//   })
-//   BinUI.LoadingBar.done()
-// })
+router.beforeEach((to, from, next) => {
+  // BinUI.LoadingBar.start()
+  next()
+})
+router.afterEach(() => {
+  Vue.nextTick(() => {
+    const blocks = document.querySelectorAll('pre code:not(.hljs)')
+    Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+  })
+  // BinUI.LoadingBar.done()
+})
 
 export default router

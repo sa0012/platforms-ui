@@ -41,7 +41,23 @@ const webpackConfig = merge(baseConfig, {
     children: false
   },
   optimization: {
-    minimizer: []
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: `chunk-vendors`,
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: 'initial'
+        },
+        common: {
+          name: `chunk-common`,
+          minChunks: 2,
+          priority: -20,
+          chunks: 'initial',
+          reuseExistingChunk: true
+        }
+      }
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -49,6 +65,11 @@ const webpackConfig = merge(baseConfig, {
       template: './examples/index.html',
       filename: './index.html',
       favicon: './examples/favicon.ico'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     }),
     new ProgressBarPlugin(),
     new webpack.LoaderOptionsPlugin(
