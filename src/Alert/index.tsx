@@ -1,16 +1,17 @@
-import classNames from 'classnames'
+// import classNames from 'classnames'
 import PropTypes from '../utils/vue-types'
-
+function noop () {}
 export const AlertProps = {
   type: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
   closable: PropTypes.bool,
   closeText: PropTypes.any,
   title: PropTypes.any,
   description: PropTypes.any,
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.def(noop),
   showIcon: PropTypes.bool,
   banner: PropTypes.bool,
-  icon: PropTypes.any
+  icon: PropTypes.any,
+  transition: PropTypes.string
 }
 
 const Alert = {
@@ -25,11 +26,13 @@ const Alert = {
 
   render () {
     return (
-      <div>
-        this is a alert component
-      </div>
+      <transition name="pl-alert-fade">
+        <div className="pl-alert">
+          this is a alert
+        </div>
+      </transition>
     )
   }
 }
 
-export default Alert;
+export default Alert

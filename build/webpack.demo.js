@@ -28,6 +28,43 @@ const webpackConfig = merge(baseConfig, {
     alias: config.alias,
     modules: ['node_modules']
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.(sass|scss)$/,
+        sideEffects: true,
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false
+              }
+            }
+          },
+          {
+            loader: path.resolve(__dirname, './md-loader/index.js')
+          }
+        ]
+      }
+    ]
+  },
   devServer: {
     host: '0.0.0.0',
     port: 8085,

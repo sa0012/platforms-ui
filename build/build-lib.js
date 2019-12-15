@@ -15,9 +15,9 @@ const tasks = [
   'node build/build-style-entry',
   'node build/build-components.js',
   // 全局引入模式
-  // 'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js',
+  'cross-env NODE_ENV=production webpack -p --color --config build/webpack.pkg.js',
   // 每个组件单独打包
-  // 'cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js'
+  'cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js'
 ]
 fs.emptyDirSync(libDir)
 

@@ -65,5 +65,11 @@ export declare class PlAlert extends PlatformsComponent {
    * @default void,
    * @type any (string | slot)
    */
-  icon: any
+  icon: any,
+
+  /**
+   * @name transition
+   * @type string
+   */
+  transition: string
 }

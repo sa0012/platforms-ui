@@ -13,6 +13,13 @@ module.exports = function (api) {
           modules: useESModules ? false : 'commonjs'
         }
       ],
+      // 解析jsx语法， 没有babel编译的时候jsx转换成的代码格式有问题
+      [
+        '@vue/babel-preset-jsx',
+        {
+          functional: false
+        }
+      ],
       '@babel/preset-typescript'
     ],
     plugins: [

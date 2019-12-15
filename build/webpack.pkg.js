@@ -1,20 +1,24 @@
 const path = require('path')
 const merge = require('webpack-merge')
 const config = require('./webpack.base')
-const { modulesFunc, allBuild, isMinify } = require('./utils')
+const { isMinify } = require('./utils')
 
 module.exports = merge(config, {
   mode: 'production',
-  entry: isMinify ? allBuild('platforms', '../es/index.js') : modulesFunc('../src'),
+  entry: {
+    platforms: './es/index.js'
+  },
   output: {
     path: path.join(__dirname, '../lib'),
     library: 'platforms',
-    libraryTarget: isMinify ? 'umd' : 'commonjs2',
-    filename: isMinify ? '[name].min.js' : '[name]/index.js'
+    libraryTarget: 'umd',
+    filename: isMinify ? '[name].min.js' : '[name].js',
+    umdNamedDefine: true,
+    // https://github.com/webpack/webpack/issues/6522
+    globalObject: 'typeof self !== \'undefined\' ? self : this'
   },
-  // 配置vue的引用模式
   externals: {
-    Vue: {
+    vue: {
       root: 'Vue',
       commonjs: 'vue',
       commonjs2: 'vue',
