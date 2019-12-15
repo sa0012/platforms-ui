@@ -1,6 +1,7 @@
 <template>
   <div id="app" flex="dir:top box:first">
     <!-- <main-header></main-header> -->
+    <pl-alert></pl-alert>
     <div class="main-cnt" flex>
       <side-nav class="nav" flex-box="0"></side-nav>
       <div class="page-container" flex-box="1">
@@ -15,31 +16,31 @@
 </template>
 
 <script>
-  export default {
-    name: 'app',
-    data () {
-      return {
-        showBackToTop: false,
-        componentScrollBar: null
-      }
-    },
-    watch: {
-      '$route.path' () {
-        // 触发伪滚动条更新
-        this.componentScrollBox.scrollTop = 0
-        this.$nextTick(() => {
-          this.componentScrollBar.update()
-          if (this.$route.meta.desc) {
-            this.$util.title(this.$route.meta.desc + ' - [bin-ui]')
-          }
-        })
-      }
-    },
-    mounted () {
-      this.componentScrollBar = this.$refs.componentScrollBar
-      this.componentScrollBox = this.componentScrollBar.$el.querySelector('.bin-scrollbar__wrap')
+export default {
+  name: 'app',
+  data () {
+    return {
+      showBackToTop: false,
+      componentScrollBar: null
     }
+  },
+  watch: {
+    '$route.path' () {
+      // 触发伪滚动条更新
+      this.componentScrollBox.scrollTop = 0
+      this.$nextTick(() => {
+        this.componentScrollBar.update()
+        if (this.$route.meta.desc) {
+          this.$util.title(this.$route.meta.desc + ' - [bin-ui]')
+        }
+      })
+    }
+  },
+  mounted () {
+    this.componentScrollBar = this.$refs.componentScrollBar
+    this.componentScrollBox = this.componentScrollBar.$el.querySelector('.bin-scrollbar__wrap')
   }
+}
 </script>
 
 <style lang="scss">
