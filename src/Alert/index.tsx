@@ -1,5 +1,6 @@
 // import classNames from 'classnames'
 import PropTypes from '../utils/vue-types'
+import Base from '../base'
 function noop () {}
 export const AlertProps = {
   type: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
@@ -35,7 +36,9 @@ const Alert = {
   }
 }
 
+/* istanbul ignore next */
 Alert.install = function (Vue) {
+  Vue.use(Base)
   Vue.component(Alert.name, Alert)
 }
 
