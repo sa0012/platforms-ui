@@ -36,7 +36,7 @@ const Alert = {
   }
 }
 
-/* istanbul ignore next */
+// @ts-ignore
 Alert.install = function (Vue) {
   Vue.use(Base)
   Vue.component(Alert.name, Alert)
