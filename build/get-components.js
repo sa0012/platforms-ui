@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 // 排除的文件
-const EXCLUDES = ['index.ts', 'index.scss', 'style', 'style.js', 'mixins', 'utils', '.DS_Store']
+const EXCLUDES = ['base', 'index.ts', 'index.scss', 'style', 'style.js', 'mixins', 'utils', '.DS_Store']
 
 module.exports = function () {
   // 组件存放目录

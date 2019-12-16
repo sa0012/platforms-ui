@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "preserve",
+    "jsxFactory": "h",
     "target": "esnext",
     "module": "esnext",
     "strict": true,

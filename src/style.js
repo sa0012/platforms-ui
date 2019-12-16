@@ -1,2 +1,1 @@
-import './Alert/style'
-import './base/style'
+import './alert/style'
