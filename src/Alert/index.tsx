@@ -23,13 +23,18 @@ const Alert = {
       text: ''
     }
   },
+
+  created () {
+    console.log(AlertProps, 'AlertProps')
+  },
+
   methods: {},
 
   render () {
     return (
       <transition name="pl-alert-fade">
         <div className="pl-alert">
-          this is a alert
+          this is a alert alert
         </div>
       </transition>
     )

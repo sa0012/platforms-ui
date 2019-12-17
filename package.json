@@ -4,7 +4,10 @@
   "description": "A Component Library for Vue.js",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
+    "dev": "cross-env NODE_ENV=development npm run build:entry && webpack-dev-server --config build/webpack.demo.js",
+    "build:entry": "cross-env npm run build:js && npm run build:style",
+    "build:js": "cross-env node build/build-entry",
+    "build:style": "cross-env node build/build-style-entry",
     "build:pkg": "cross-env NODE_ENV=production webpack --color --config build/webpack.pkg.js",
     "build:lib": "cross-env node build/build-lib.js",
     "lint": "eslint --ext .js,.vue src",
