@@ -25,12 +25,6 @@ export default {
       componentScrollBar: null
     }
   },
-<<<<<<< HEAD
-=======
-  components: {
-    // DemoAlert
-  },
->>>>>>> b65628b1bbfa0686b081ab50d82e1c837e5d4a40
   // watch: {
   //   '$route.path' () {
   //     // 触发伪滚动条更新

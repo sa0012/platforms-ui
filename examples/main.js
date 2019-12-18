@@ -7,7 +7,7 @@ import './assets/styles/index.scss'
 import icon from './icon.config'
 
 import plarforms from '../src'
-import '../src/style'
+import '../src/style.js'
 import BCollapseTransition from './components/collapse-transition'
 
 import DemoBlock from './components/demo-block.vue'
