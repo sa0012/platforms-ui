@@ -336,4 +336,10 @@ export function deepCopy (data) {
   return o
 }
 
+export function importAll (map, r) {
+  r.keys().forEach(key => {
+    map[key] = r(key)
+  })
+}
+
 export default util
