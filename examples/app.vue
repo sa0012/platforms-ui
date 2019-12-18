@@ -24,21 +24,21 @@ export default {
       componentScrollBar: null
     }
   },
-  watch: {
-    '$route.path' () {
-      // 触发伪滚动条更新
-      this.componentScrollBox.scrollTop = 0
-      this.$nextTick(() => {
-        this.componentScrollBar.update()
-        if (this.$route.meta.desc) {
-          this.$util.title(this.$route.meta.desc + ' - [bin-ui]')
-        }
-      })
-    }
-  },
+  // watch: {
+  //   '$route.path' () {
+  //     // 触发伪滚动条更新
+  //     this.componentScrollBox.scrollTop = 0
+  //     this.$nextTick(() => {
+  //       this.componentScrollBar.update()
+  //       if (this.$route.meta.desc) {
+  //         this.$util.title(this.$route.meta.desc + ' - [bin-ui]')
+  //       }
+  //     })
+  //   }
+  // },
   mounted () {
-    this.componentScrollBar = this.$refs.componentScrollBar
-    this.componentScrollBox = this.componentScrollBar.$el.querySelector('.bin-scrollbar__wrap')
+    // this.componentScrollBar = this.$refs.componentScrollBar
+    // this.componentScrollBox = this.componentScrollBar.$el.querySelector('.bin-scrollbar__wrap')
   }
 }
 </script>

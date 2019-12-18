@@ -24,10 +24,10 @@
 ::: demo
 ```html
 <template>
-    <b-alert >info alert</b-alert>
-    <b-alert type="success">success alert</b-alert>
-    <b-alert type="warning">warning alert</b-alert>
-    <b-alert type="error">error alert</b-alert>
+    <pl-alert >info alert</pl-alert>
+    <pl-alert type="success">success alert</pl-alert>
+    <pl-alert type="warning">warning alert</pl-alert>
+    <pl-alert type="error">error alert</pl-alert>
 </template>
 ```
 :::
@@ -39,18 +39,18 @@
 ::: demo
 ```html
 <template>
-    <b-alert >info alert
+    <pl-alert >info alert
     <template slot="desc">我是描述信息... </template>
-    </b-alert>
-    <b-alert type="success">success alert
+    </pl-alert>
+    <pl-alert type="success">success alert
     <template slot="desc">我是描述信息... </template>
-    </b-alert>
-    <b-alert type="warning">warning alert
+    </pl-alert>
+    <pl-alert type="warning">warning alert
     <template slot="desc">我是描述信息... </template>
-    </b-alert>
-    <b-alert type="error">error alert
+    </pl-alert>
+    <pl-alert type="error">error alert
     <template slot="desc">我是描述信息... </template>
-    </b-alert>
+    </pl-alert>
 </template>
 ```
 :::
@@ -62,17 +62,17 @@
 ::: demo
 ```html
 <template>
-    <b-alert show-icon>info alert</b-alert>
-    <b-alert type="success" show-icon>success alert</b-alert>
-    <b-alert type="warning" show-icon>warning alert</b-alert>
-    <b-alert type="error" show-icon>error alert
+    <pl-alert show-icon>info alert</pl-alert>
+    <pl-alert type="success" show-icon>success alert</pl-alert>
+    <pl-alert type="warning" show-icon>warning alert</pl-alert>
+    <pl-alert type="error" show-icon>error alert
       <span slot="desc"> Custom error description copywriting.</span>
-    </b-alert>
-    <b-alert show-icon>
+    </pl-alert>
+    <pl-alert show-icon>
        自定义icon
         <b-icon name="ios-basketball" slot="icon"></b-icon>
         <template slot="desc">自定义icon描述</template>
-    </b-alert>
+    </pl-alert>
 </template>
 ```
 :::
@@ -84,15 +84,15 @@
 ::: demo
 ```html
 <template>
-    <b-alert closable>An info prompt</b-alert>
-    <b-alert type="success" show-icon closable>
+    <pl-alert closable>An info prompt</pl-alert>
+    <pl-alert type="success" show-icon closable>
        A success prompt
        <span slot="desc">Content of prompt. Content of prompt. Content of prompt. Content of prompt. </span>
-    </b-alert>
-    <b-alert type="warning" closable>
+    </pl-alert>
+    <pl-alert type="warning" closable>
        Custom closing content
        <span slot="close">No longer prompt</span>
-    </b-alert>
+    </pl-alert>
 </template>
 ```
 :::
@@ -104,8 +104,8 @@
 ::: demo
 ```html
 <template>
-    <b-alert banner >公告样式...</b-alert>
-    <b-alert banner closable type="warning">公告样式...</b-alert>
+    <pl-alert banner >公告样式...</pl-alert>
+    <pl-alert banner closable type="warning">公告样式...</pl-alert>
 </template>
 ```
 :::

@@ -5,7 +5,7 @@ console.log('进来了吗')
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.ts', '.tsx', '.vue', '.json', '.scss'],
     alias: {
       'vue2': 'vue/dist/vue.esm.js'
     }

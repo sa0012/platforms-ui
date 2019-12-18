@@ -19,7 +19,8 @@ const webpackConfig = merge(baseConfig, {
     docs: './examples/main.js'
   },
   output: {
-    path: path.resolve(process.cwd(), './examples/platforms-ui/'),
+    path: path.join(__dirname, '../examples/platforms-ui/'),
+    publicPath: '/',
     filename: '[name].[hash:7].js',
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
   },

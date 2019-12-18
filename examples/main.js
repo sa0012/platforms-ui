@@ -6,8 +6,8 @@ import './assets/styles/color-brewer.css'
 import './assets/styles/index.scss'
 import icon from './icon.config'
 
-import PlUI from '../es/index'
-import '../es/style'
+import plarforms from '../src'
+import '../src/style'
 import BCollapseTransition from './components/collapse-transition'
 
 import DemoBlock from './components/demo-block.vue'
@@ -22,7 +22,7 @@ Vue.component('SideNav', SideNav)
 Vue.component('BCollapseTransition', BCollapseTransition)
 // // Vue.component('PlAlert', PlAlert)
 
-Vue.use(PlUI)
+Vue.use(plarforms)
 
 Vue.prototype.$icon = icon // Icon 列表页用
 
