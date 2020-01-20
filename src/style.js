@@ -1,1 +1,1 @@
-import './alert/style'
+import './Alert/style'

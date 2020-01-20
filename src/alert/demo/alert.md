@@ -24,7 +24,7 @@
 ::: demo
 ```html
 <template>
-    <pl-alert />
+    <!-- <pl-alert /> -->
 </template>
 ```
 :::

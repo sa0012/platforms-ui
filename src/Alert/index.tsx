@@ -33,8 +33,8 @@ const Alert = {
   render () {
     return (
       <transition name="pl-alert-fade">
-        <div className="pl-alert">
-          this is a alert alert
+        <div class="pl-alert">
+          this is a alert components
         </div>
       </transition>
     )
