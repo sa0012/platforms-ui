@@ -29,7 +29,7 @@ const babelConfig = {
   configFile: path.join(__dirname, '../babel.config.js')
 }
 
-const scriptRegExp = /\.(js|ts|tsx)$/
+const scriptRegExp = /\.(js|ts|jsx)$/
 // 接收一个文件路径， 返回一个fs.Status()实例， 判断文件是否存在
 // isDirectory是否是目录
 const isDir = dir => fs.lstatSync(dir).isDirectory()
